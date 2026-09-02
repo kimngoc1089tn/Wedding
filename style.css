@@ -2,29 +2,29 @@
    a pale sand page, camel paper for the envelope and card, warm brown ink
    and a bronze wax accent. It stays fixed the way a printed suite would. */
 :root {
-  --sand: #f1e4d6;
-  --sand-soft: #e7d5c3;
-  --sand-inset: #e3d0bc;
-  --tone: #d0b29a;
-  --tone-light: #ddc4ae;
-  --tone-deep: #bd9c81;
+  --sand: #F8FCF9;
+  --sand-soft: #EAF6ED;
+  --sand-inset: #DCEFE1;
+  --tone: #A8C9B0;
+  --tone-light: #CFE6D4;
+  --tone-deep: #79B98A;
 
-  --ink: #3a2b1e;
-  --ink-quiet: #6b5544;
-  --line: rgba(58, 43, 30, 0.2);
+  --ink: #31583E;
+  --ink-quiet: #66816E;
+  --line: rgba(71, 122, 88, 0.20);
 
-  --card-ink: #33261a;
-  --card-line: rgba(51, 38, 26, 0.32);
+  --card-ink: #31583E;
+  --card-line: rgba(71, 122, 88, 0.28);
 
-  --wax: #9a6f52;
-  --wax-light: #b98b68;
-  --wax-deep: #6d4a33;
-  --wax-text: #8a6247;
+  --wax: #79B98A;
+  --wax-light: #A8C9B0;
+  --wax-deep: #477A58;
+  --wax-text: #477A58;
 
   /* Copper wax for the seal that opens the invitation */
-  --copper: #a5623c;
-  --copper-light: #c98a5e;
-  --copper-deep: #6b3719;
+  --copper: #79B98A;
+  --copper-light: #A8C9B0;
+  --copper-deep: #477A58;
 
   /* Shape system: surfaces use --radius, anything interactive uses the pill,
      concentric frames sit one pixel inside their surface, and only the wax
@@ -168,21 +168,21 @@ main > section > * {
 
 .env-flap-left {
   clip-path: polygon(0 0, 0 100%, 50% 50%);
-  background: linear-gradient(90deg, #cbac93, #c3a48b);
+  background: linear-gradient(90deg, #A8C9B0, #9FC4A8);
   transform-origin: left center;
   transition-delay: 0.75s;
 }
 
 .env-flap-right {
   clip-path: polygon(100% 0, 100% 100%, 50% 50%);
-  background: linear-gradient(270deg, #d5b7a0, #cbad95);
+  background: linear-gradient(270deg, #B8D5BE, #A8C9B0);
   transform-origin: right center;
   transition-delay: 0.75s;
 }
 
 .env-flap-bottom {
   clip-path: polygon(0 100%, 100% 100%, 50% 50%);
-  background: linear-gradient(0deg, #c7a88f, var(--tone-deep));
+  background: linear-gradient(0deg, #8FBD9A, var(--tone-deep));
   transform-origin: center bottom;
   transition-delay: 1s;
 }
