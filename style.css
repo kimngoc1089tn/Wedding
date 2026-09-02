@@ -1568,8 +1568,8 @@ body.is-revealing .std-card {
 
 .venue-qr img {
   display: block;
-  width: 150px;
-  height: 150px;
+  width: 350px;
+  height: 350px;
   object-fit: contain;
   margin: 0 auto 10px;
   border-radius: 8px;
