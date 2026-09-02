@@ -461,8 +461,8 @@ if (rsvpForm) {
 
       /* Kiểm tra đã nhập URL Google Apps Script */
       if (
-        GOOGLE_SCRIPT_URL ===
-        "DAN_URL_WEB_APP_GOOGLE_APPS_SCRIPT_VAO_DAY"
+        const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbznUy_WCw6urT_cvnjqpatIxYgJkzx2gcQnTaedjmfw8l-t6_eSjco60dlu3qsSEQ_a/exec";
       ) {
         alert(
           "Bạn chưa nhập URL Web App Google Apps Script trong file script.js."
