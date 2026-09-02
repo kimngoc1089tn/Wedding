@@ -1542,3 +1542,43 @@ body.is-revealing .std-card {
     padding: 0 0.6rem;
   }
 }
+
+/* ================================
+   ĐỊA ĐIỂM + QR CODE
+================================ */
+
+.wi-venue {
+  text-align: center;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.wi-venue strong {
+  display: inline-block;
+  font-size: 1.15em;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+/* QR địa điểm */
+.venue-qr {
+  text-align: center;
+  margin: 18px auto 0;
+}
+
+.venue-qr img {
+  display: block;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin: 0 auto 10px;
+  border-radius: 8px;
+}
+
+.venue-qr p {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #477A58;
+}
