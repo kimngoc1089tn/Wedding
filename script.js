@@ -65,7 +65,6 @@ function setMusicState(playing) {
   );
 }
 
-/* Nothing to offer if the track file is missing */
 if (music) {
   music.addEventListener("error", () => {
     musicAvailable = false;
@@ -125,7 +124,6 @@ const openButton = document.getElementById("openInvite");
 const sealPhoto = document.getElementById("sealPhoto");
 const sealFace = document.getElementById("sealFace");
 
-/* A photograph of the real stamp takes over from the drawn wax */
 if (sealPhoto && sealFace) {
   const useSealPhoto = () => {
     sealPhoto.hidden = false;
@@ -176,7 +174,6 @@ if (overlay && openButton) {
     () => {
       openButton.disabled = true;
 
-      /* The press is a real user gesture, so audio is allowed */
       startMusic();
 
       if (prefersReducedMotion) {
@@ -205,7 +202,6 @@ if (overlay && openButton) {
         );
       }
 
-      /* Safety fallback */
       window.setTimeout(release, 2200);
     },
     { once: true }
@@ -236,7 +232,6 @@ function wireDialog(dialog, opener, closer) {
     });
   }
 
-  /* Clicking backdrop closes dialog */
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog) {
       dialog.close();
@@ -348,7 +343,6 @@ function syncRsvpState() {
     Boolean(choice) &&
     choice.value === "yes";
 
-  /* Highlight selected option */
   rsvpForm
     .querySelectorAll(".choice-row")
     .forEach((row) => {
@@ -363,12 +357,10 @@ function syncRsvpState() {
       );
     });
 
-  /* Show guest count only when attending */
   if (guestField) {
     guestField.hidden = !coming;
   }
 
-  /* Enable submit only when name + answer exist */
   if (rsvpSubmit) {
     rsvpSubmit.disabled = !(
       rsvpName &&
@@ -432,7 +424,7 @@ function stepGuests(delta) {
 
 /*
  * URL Web App Google Apps Script
- * Đã gắn sẵn URL của bạn.
+ * Đã gắn sẵn URL.
  */
 
 const GOOGLE_SCRIPT_URL =
@@ -500,11 +492,13 @@ if (rsvpForm) {
         !rsvpName.value.trim() ||
         !choice
       ) {
+        syncRsvpState();
         return;
       }
 
 
       /* Lấy dữ liệu form */
+
       const data =
         new URLSearchParams();
 
@@ -530,10 +524,11 @@ if (rsvpForm) {
 
 
       /* Khóa nút trong lúc gửi */
+
       if (rsvpSubmit) {
         rsvpSubmit.disabled = true;
         rsvpSubmit.textContent =
-          "Đang gửi...";
+          "ĐANG GỬI...";
       }
 
 
@@ -543,11 +538,14 @@ if (rsvpForm) {
           GOOGLE_SCRIPT_URL,
           {
             method: "POST",
+
             mode: "no-cors",
+
             headers: {
               "Content-Type":
                 "application/x-www-form-urlencoded;charset=UTF-8"
             },
+
             body: data.toString()
           }
         );
@@ -591,6 +589,7 @@ if (rsvpForm) {
             );
 
           }
+
         }
 
 
@@ -602,33 +601,41 @@ if (rsvpForm) {
           guestCount.value = "1";
         }
 
+        if (guestField) {
+          guestField.hidden = true;
+        }
+
         syncRsvpState();
         syncStepper();
+
 
       } catch (error) {
 
         console.error(
-          "RSVP submit error:",
+          "Lỗi gửi RSVP:",
           error
         );
 
         alert(
-          "Không thể gửi xác nhận. Vui lòng kiểm tra kết nối mạng và thử lại."
+          "Không thể gửi xác nhận lúc này. Vui lòng thử lại sau."
         );
 
       } finally {
 
         if (rsvpSubmit) {
+
           rsvpSubmit.textContent =
-            "Gửi xác nhận";
+            "GỬI XÁC NHẬN";
 
           syncRsvpState();
+
         }
 
       }
 
     }
   );
+
 }
 
 
