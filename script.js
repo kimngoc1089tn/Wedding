@@ -28,7 +28,9 @@ function updateCountdown() {
   const minutes = Math.floor(
     (distance % (1000 * 60 * 60)) / (1000 * 60)
   );
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  const seconds = Math.floor(
+    (distance % (1000 * 60)) / 1000
+  );
 
   els.days.textContent = String(days).padStart(2, "0");
   els.hours.textContent = String(hours).padStart(2, "0");
@@ -47,6 +49,7 @@ if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
 
+
 /* ---------- Background music ---------- */
 
 const music = document.getElementById("bgMusic");
@@ -55,12 +58,14 @@ let musicAvailable = Boolean(music && musicToggle);
 
 function setMusicState(playing) {
   if (!musicToggle) return;
+
   musicToggle.setAttribute(
     "aria-pressed",
     playing ? "true" : "false"
   );
 }
 
+/* Nothing to offer if the track file is missing */
 if (music) {
   music.addEventListener("error", () => {
     musicAvailable = false;
@@ -112,6 +117,7 @@ if (musicToggle) {
   });
 }
 
+
 /* ---------- Sealed envelope ---------- */
 
 const overlay = document.getElementById("envelopeOverlay");
@@ -119,6 +125,7 @@ const openButton = document.getElementById("openInvite");
 const sealPhoto = document.getElementById("sealPhoto");
 const sealFace = document.getElementById("sealFace");
 
+/* A photograph of the real stamp takes over from the drawn wax */
 if (sealPhoto && sealFace) {
   const useSealPhoto = () => {
     sealPhoto.hidden = false;
@@ -154,6 +161,7 @@ function unlockPage() {
 
   if (firstSection) {
     firstSection.setAttribute("tabindex", "-1");
+
     firstSection.focus({
       preventScroll: true
     });
@@ -168,6 +176,7 @@ if (overlay && openButton) {
     () => {
       openButton.disabled = true;
 
+      /* The press is a real user gesture, so audio is allowed */
       startMusic();
 
       if (prefersReducedMotion) {
@@ -179,7 +188,9 @@ if (overlay && openButton) {
       overlay.classList.add("is-opening");
       document.body.classList.add("is-revealing");
 
-      const lastFlap = overlay.querySelector(".env-flap-bottom");
+      const lastFlap = overlay.querySelector(
+        ".env-flap-bottom"
+      );
 
       const release = () => {
         overlay.remove();
@@ -194,6 +205,7 @@ if (overlay && openButton) {
         );
       }
 
+      /* Safety fallback */
       window.setTimeout(release, 2200);
     },
     { once: true }
@@ -201,6 +213,7 @@ if (overlay && openButton) {
 } else {
   document.body.classList.add("invite-open");
 }
+
 
 /* ---------- Dialogs ---------- */
 
@@ -223,12 +236,16 @@ function wireDialog(dialog, opener, closer) {
     });
   }
 
+  /* Clicking backdrop closes dialog */
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog) {
       dialog.close();
     }
   });
 }
+
+
+/* ---------- Gift dialog ---------- */
 
 const giftDialog = document.getElementById("giftDialog");
 const openGift = document.getElementById("openGift");
@@ -258,6 +275,9 @@ wireDialog(
   closeGift
 );
 
+
+/* ---------- RSVP dialog ---------- */
+
 const rsvpDialog = document.getElementById("rsvpDialog");
 const thanksDialog = document.getElementById("thanksDialog");
 
@@ -282,16 +302,33 @@ if (closeThanksBtn && thanksDialog) {
   });
 }
 
-/* ---------- RSVP ---------- */
 
-const rsvpForm = document.getElementById("rsvpForm");
-const thanksText = document.getElementById("thanksText");
-const rsvpName = document.getElementById("rsvpName");
-const rsvpSubmit = document.getElementById("rsvpSubmit");
-const guestField = document.getElementById("guestField");
-const guestCount = document.getElementById("guestCount");
-const guestMinus = document.getElementById("guestMinus");
-const guestPlus = document.getElementById("guestPlus");
+/* ---------- RSVP form ---------- */
+
+const rsvpForm =
+  document.getElementById("rsvpForm");
+
+const thanksText =
+  document.getElementById("thanksText");
+
+const rsvpName =
+  document.getElementById("rsvpName");
+
+const rsvpSubmit =
+  document.getElementById("rsvpSubmit");
+
+const guestField =
+  document.getElementById("guestField");
+
+const guestCount =
+  document.getElementById("guestCount");
+
+const guestMinus =
+  document.getElementById("guestMinus");
+
+const guestPlus =
+  document.getElementById("guestPlus");
+
 
 function attendingChoice() {
   return rsvpForm
@@ -300,6 +337,7 @@ function attendingChoice() {
       )
     : null;
 }
+
 
 function syncRsvpState() {
   if (!rsvpForm) return;
@@ -310,6 +348,7 @@ function syncRsvpState() {
     Boolean(choice) &&
     choice.value === "yes";
 
+  /* Highlight selected option */
   rsvpForm
     .querySelectorAll(".choice-row")
     .forEach((row) => {
@@ -324,10 +363,12 @@ function syncRsvpState() {
       );
     });
 
+  /* Show guest count only when attending */
   if (guestField) {
     guestField.hidden = !coming;
   }
 
+  /* Enable submit only when name + answer exist */
   if (rsvpSubmit) {
     rsvpSubmit.disabled = !(
       rsvpName &&
@@ -336,6 +377,9 @@ function syncRsvpState() {
     );
   }
 }
+
+
+/* ---------- Guest stepper ---------- */
 
 function syncStepper() {
   if (!guestCount) return;
@@ -371,17 +415,31 @@ function syncStepper() {
   }
 }
 
+
 function stepGuests(delta) {
   if (!guestCount) return;
 
-  guestCount.value =
-    String(
-      (Number(guestCount.value) || 1) +
-      delta
-    );
+  guestCount.value = String(
+    (Number(guestCount.value) || 1) +
+    delta
+  );
 
   syncStepper();
 }
+
+
+/* ---------- GOOGLE SHEETS ---------- */
+
+/*
+ * URL Web App Google Apps Script
+ * Đã gắn sẵn URL của bạn.
+ */
+
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbznUy_WCw6urT_cvnjqpatIxYgJkzx2gcQnTaedjmfw8l-t6_eSjco60dlu3qsSEQ_a/exec";
+
+
+/* ---------- RSVP events ---------- */
 
 if (rsvpForm) {
 
@@ -421,20 +479,8 @@ if (rsvpForm) {
   syncRsvpState();
   syncStepper();
 
-  /* =========================================
-     GOOGLE SHEETS RSVP
-     ========================================= */
 
-  /*
-    SAU KHI DEPLOY GOOGLE APPS SCRIPT,
-    DÁN URL WEB APP VÀO ĐÂY.
-
-    Ví dụ:
-    https://script.google.com/macros/s/XXXXXXXXXXXX/exec
-  */
-
-  const GOOGLE_SCRIPT_URL =
-    "DAN_URL_WEB_APP_GOOGLE_APPS_SCRIPT_VAO_DAY";
+  /* ---------- Submit RSVP ---------- */
 
   rsvpForm.addEventListener(
     "submit",
@@ -449,28 +495,16 @@ if (rsvpForm) {
         Boolean(choice) &&
         choice.value === "yes";
 
-      /* Kiểm tra dữ liệu */
       if (
         !rsvpName ||
         !rsvpName.value.trim() ||
         !choice
       ) {
-        syncRsvpState();
         return;
       }
 
-      /* Kiểm tra đã nhập URL Google Apps Script */
-      if (
-        const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbznUy_WCw6urT_cvnjqpatIxYgJkzx2gcQnTaedjmfw8l-t6_eSjco60dlu3qsSEQ_a/exec";
-      ) {
-        alert(
-          "Bạn chưa nhập URL Web App Google Apps Script trong file script.js."
-        );
-        return;
-      }
 
-      /* Dữ liệu gửi sang Google Sheets */
+      /* Lấy dữ liệu form */
       const data =
         new URLSearchParams();
 
@@ -487,16 +521,21 @@ if (rsvpForm) {
       data.append(
         "guests",
         coming && guestCount
-          ? (guestCount.value || "1")
+          ? (
+              guestCount.value ||
+              "1"
+            )
           : "0"
       );
 
-      /* Khóa nút tránh gửi nhiều lần */
+
+      /* Khóa nút trong lúc gửi */
       if (rsvpSubmit) {
         rsvpSubmit.disabled = true;
         rsvpSubmit.textContent =
-          "ĐANG GỬI...";
+          "Đang gửi...";
       }
+
 
       try {
 
@@ -504,53 +543,63 @@ if (rsvpForm) {
           GOOGLE_SCRIPT_URL,
           {
             method: "POST",
-
             mode: "no-cors",
-
             headers: {
               "Content-Type":
                 "application/x-www-form-urlencoded;charset=UTF-8"
             },
-
             body: data.toString()
           }
         );
 
-        /* Thông báo thành công */
+
+        /* Nội dung cảm ơn */
+
         if (thanksText) {
 
           thanksText.textContent =
             coming
               ? "Chúng mình đã nhận được xác nhận của bạn. Rất mong được gặp bạn trong ngày trọng đại!"
               : "Chúng mình đã nhận được phản hồi của bạn. Cảm ơn bạn đã cho chúng mình biết.";
+
         }
 
-        /* Đóng form RSVP */
+
+        /* Đóng RSVP */
+
         if (rsvpDialog) {
           rsvpDialog.close();
         }
 
-        /* Hiện thông báo cảm ơn */
+
+        /* Mở thông báo cảm ơn */
+
         if (thanksDialog) {
 
           if (
             typeof thanksDialog.showModal ===
             "function"
           ) {
+
             thanksDialog.showModal();
+
           } else {
+
             thanksDialog.setAttribute(
               "open",
               ""
             );
+
           }
         }
 
+
         /* Reset form */
+
         rsvpForm.reset();
 
-        if (guestField) {
-          guestField.hidden = true;
+        if (guestCount) {
+          guestCount.value = "1";
         }
 
         syncRsvpState();
@@ -559,28 +608,31 @@ if (rsvpForm) {
       } catch (error) {
 
         console.error(
-          "Lỗi gửi RSVP:",
+          "RSVP submit error:",
           error
         );
 
         alert(
-          "Không thể gửi xác nhận lúc này. Vui lòng thử lại sau."
+          "Không thể gửi xác nhận. Vui lòng kiểm tra kết nối mạng và thử lại."
         );
 
       } finally {
 
         if (rsvpSubmit) {
           rsvpSubmit.textContent =
-            "GỬI XÁC NHẬN";
+            "Gửi xác nhận";
 
           syncRsvpState();
         }
+
       }
+
     }
   );
 }
 
-/* ---------- Copy bank ---------- */
+
+/* ---------- Copy bank number ---------- */
 
 const copyBank =
   document.getElementById("copyBank");
@@ -607,10 +659,13 @@ if (
           copyBank.textContent =
             "Đã chép";
 
-          window.setTimeout(() => {
-            copyBank.textContent =
-              "Sao chép";
-          }, 1800);
+          window.setTimeout(
+            () => {
+              copyBank.textContent =
+                "Sao chép";
+            },
+            1800
+          );
 
         })
         .catch(() => {
@@ -618,24 +673,32 @@ if (
           copyBank.textContent =
             "Không chép được";
 
-          window.setTimeout(() => {
-            copyBank.textContent =
-              "Sao chép";
-          }, 1800);
+          window.setTimeout(
+            () => {
+              copyBank.textContent =
+                "Sao chép";
+            },
+            1800
+          );
 
         });
+
     }
   );
 
 } else if (copyBank) {
 
   copyBank.hidden = true;
+
 }
+
 
 /* ---------- Scroll reveal ---------- */
 
 const revealEls =
-  document.querySelectorAll(".reveal");
+  document.querySelectorAll(
+    ".reveal"
+  );
 
 if (
   prefersReducedMotion ||
@@ -643,7 +706,9 @@ if (
 ) {
 
   revealEls.forEach((el) => {
-    el.classList.add("is-visible");
+    el.classList.add(
+      "is-visible"
+    );
   });
 
 } else {
@@ -652,20 +717,25 @@ if (
     new IntersectionObserver(
       (entries) => {
 
-        entries.forEach((entry) => {
+        entries.forEach(
+          (entry) => {
 
-          if (entry.isIntersecting) {
+            if (
+              entry.isIntersecting
+            ) {
 
-            entry.target.classList.add(
-              "is-visible"
-            );
+              entry.target.classList.add(
+                "is-visible"
+              );
 
-            observer.unobserve(
-              entry.target
-            );
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
           }
-
-        });
+        );
 
       },
       {
@@ -676,4 +746,5 @@ if (
   revealEls.forEach((el) => {
     observer.observe(el);
   });
+
 }
