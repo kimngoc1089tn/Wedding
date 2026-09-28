@@ -755,10 +755,3 @@ if (
   });
 
 }
-
-/* NHAC */
-const music = document.getElementById("bgMusic");
-
-openInvite.addEventListener("click", () => {
-  music.play().catch(() => {});
-});
