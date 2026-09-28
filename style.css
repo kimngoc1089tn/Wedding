@@ -1724,3 +1724,52 @@ body.is-revealing .std-card {
     font-size: 12px;
   }
 }
+
+/* MAP */
+.map-wrap {
+  text-align: center;
+  margin-top: 28px;
+}
+
+.map-label {
+  color: #6B7D6E;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  margin-bottom: 12px;
+}
+
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 11px 22px;
+
+  color: #F7F8F2;
+  background: #4F6B55;
+
+  border: 1px solid #4F6B55;
+  border-radius: 30px;
+
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+
+  text-decoration: none;
+
+  transition: all 0.3s ease;
+}
+
+.map-btn:hover {
+  background: #3F5D46;
+  transform: translateY(-2px);
+}
+
+.map-icon {
+  font-size: 19px;
+  line-height: 1;
+}
