@@ -1584,9 +1584,10 @@ body.is-revealing .std-card {
 }
 
 /* ===== THÔNG TIN TIỆC CƯỚI - TONE XANH MỘC ===== */
+<style>
 
 .wi-title {
-  color: #4F6652;
+  color: #3F5F48;
   font-size: 28px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -1594,75 +1595,86 @@ body.is-revealing .std-card {
 }
 
 .wi-lead {
-  color: #687568;
+  color: #607565;
   font-size: 16px;
-  letter-spacing: 0.5px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
   margin-bottom: 18px;
 }
 
-/* THỨ + GIỜ */
+/* CHỦ NHẬT | 11:00 */
 .wi-when {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 18px;
-  color: #526956;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  margin: 0 0 22px;
+  gap: 20px;
+
+  color: #315D42;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  margin: 0 0 24px;
 }
 
 .wi-when i {
-  width: 1px;
-  height: 25px;
+  width: 2px;
+  height: 28px;
   display: inline-block;
-  background: #8A9B89;
-  opacity: 0.7;
+  background: #B7CBB9;
 }
 
-/* NGÀY */
+/* KHỐI NGÀY */
 .wi-date {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 18px;
-  margin: 10px 0 14px;
+  gap: 24px;
+  margin: 12px 0 14px;
 }
 
+/* SỐ 11 */
 .wi-daynum {
-  color: #435D48;
-  font-size: 82px;
+  color: #315D42;
+  font-size: 88px;
   line-height: 0.85;
-  font-weight: 700;
-  letter-spacing: -4px;
+  font-weight: 800;
+  letter-spacing: -3px;
 }
 
+/* THÁNG + NĂM */
 .wi-monthyear {
-  color: #526956;
+  color: #315D42;
+
   display: flex;
   flex-direction: column;
   text-align: left;
-  font-size: 22px;
+
+  font-size: 28px;
   line-height: 1.15;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .wi-monthyear i {
-  color: #7C8D78;
+  color: #66836D;
+
   font-style: normal;
   font-size: 30px;
   font-weight: 600;
+
   letter-spacing: 1px;
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
-/* ÂM LỊCH */
+/* NGÀY ÂM LỊCH */
 .wi-lunar {
-  color: #7A8479;
-  font-size: 13px;
-  opacity: 0.85;
-  letter-spacing: 0.3px;
-  margin-top: 8px;
+  color: #718274;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: italic;
+
+  letter-spacing: 0.2px;
+  margin-top: 10px;
 }
+</style>
