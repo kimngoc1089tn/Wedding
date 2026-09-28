@@ -1584,25 +1584,33 @@ body.is-revealing .std-card {
 }
 
 
-<style>
 /* ==============================
-   THÔNG TIN TIỆC CƯỚI
-   TONE XANH MỘC
+   FONT THÔNG TIN TIỆC CƯỚI
    ============================== */
 
+.wi-title,
+.wi-lead,
+.wi-when,
+.wi-date,
+.wi-lunar {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+/* TIÊU ĐỀ */
 .wi-title {
   color: #3F5F48;
   font-size: 28px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   margin-bottom: 12px;
 }
 
+/* DÒNG GIỚI THIỆU */
 .wi-lead {
   color: #607565;
   font-size: 16px;
   font-weight: 500;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
   margin-bottom: 18px;
 }
 
@@ -1628,7 +1636,7 @@ body.is-revealing .std-card {
   background: #B7CBB9;
 }
 
-/* KHỐI NGÀY */
+/* NGÀY */
 .wi-date {
   display: flex;
   justify-content: center;
@@ -1640,7 +1648,7 @@ body.is-revealing .std-card {
 /* SỐ 11 */
 .wi-daynum {
   color: #315D42;
-  font-size: 88px;
+  font-size: 90px;
   line-height: 0.85;
   font-weight: 800;
   letter-spacing: -3px;
@@ -1671,14 +1679,48 @@ body.is-revealing .std-card {
   margin-top: 5px;
 }
 
-/* NGÀY ÂM LỊCH */
+/* ÂM LỊCH */
 .wi-lunar {
   color: #718274;
   font-size: 14px;
   font-weight: 500;
   font-style: italic;
-
   letter-spacing: 0.2px;
   margin-top: 10px;
 }
-</style>
+
+@media (max-width: 600px) {
+
+  .wi-title {
+    font-size: 23px;
+  }
+
+  .wi-when {
+    font-size: 19px;
+    gap: 14px;
+  }
+
+  .wi-when i {
+    height: 23px;
+  }
+
+  .wi-daynum {
+    font-size: 72px;
+  }
+
+  .wi-date {
+    gap: 18px;
+  }
+
+  .wi-monthyear {
+    font-size: 22px;
+  }
+
+  .wi-monthyear i {
+    font-size: 25px;
+  }
+
+  .wi-lunar {
+    font-size: 12px;
+  }
+}
